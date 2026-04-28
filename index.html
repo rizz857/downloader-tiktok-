@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SocioLoad - Premium Video Downloader</title>
+    <title>
+        RyuZeDL-downloder
+        </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -12,7 +14,7 @@
             background: radial-gradient(circle at top, #1a1f35, #0b0f1a); 
             color: white; 
             font-family: 'Inter', sans-serif; 
-            min-height: screen;
+            min-height: 100vh;
         }
         .glass { 
             background: rgba(255, 255, 255, 0.02); 
@@ -34,7 +36,7 @@
         .video-container {
             position: relative;
             width: 100%;
-            max-width: 320px;
+            max-width: 280px;
             aspect-ratio: 9/16;
             margin: 0 auto;
             border-radius: 20px;
@@ -47,75 +49,101 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-result { animation: slideUp 0.5s forwards; }
+        .social-card:hover { background: rgba(255, 255, 255, 0.05); transform: translateY(-5px); transition: 0.3s; }
     </style>
 </head>
-<body class="flex flex-col items-center p-6 md:p-12">
+<body class="flex flex-col items-center p-4 md:p-12">
 
-    <header class="w-full max-w-6xl flex justify-between items-center mb-16">
+    <header class="w-full max-w-6xl flex justify-between items-center mb-10 md:mb-16">
         <div class="flex items-center gap-2">
             <div class="bg-blue-500 p-1.5 rounded-lg">
                 <i data-lucide="rocket" class="text-white w-5 h-5 fill-white"></i>
             </div>
-            <span class="text-xl font-extrabold tracking-tighter italic">SOCIO<span class="text-blue-400 font-black">LOAD</span></span>
+            <span class="text-xl font-extrabold tracking-tighter italic">RyuZen<span class="text-blue-400 font-black"></span>DL</span>
         </div>
-        <nav class="hidden md:flex gap-8 text-[11px] font-bold tracking-widest text-slate-400">
+        <nav class="hidden lg:flex gap-8 text-[11px] font-bold tracking-widest text-slate-400">
             <a href="#" class="text-white border-b-2 border-blue-500 pb-1">HOME</a>
-            <a href="#" class="hover:text-white transition">FEATURES</a>
-            <a href="#" class="hover:text-white transition">SUPPORT</a>
-            <button class="border border-blue-500/50 px-4 py-2 rounded-full text-blue-400 hover:bg-blue-500/10 transition">INSTANT DOWNLOAD</button>
+            <a href="#community" class="hover:text-white transition uppercase">Community</a>
+            <a href="#contact" class="hover:text-white transition uppercase">Contact CS</a>
+            <button class="border border-blue-500/50 px-4 py-2 rounded-full text-blue-400 hover:bg-blue-500/10 transition">INSTANT DOWNLOADER</button>
         </nav>
     </header>
 
-    <main class="w-full max-w-4xl flex flex-col items-center">
-        <h1 class="text-3xl md:text-5xl font-black text-center mb-4 tracking-tight">
-            SOCIO LOAD - <span class="text-blue-400">All-in-One</span>
+    <main class="w-full max-w-5xl flex flex-col items-center">
+        <h1 class="text-3xl md:text-6xl font-black text-center mb-4 tracking-tight leading-tight">
+            RyuZen DL - <span class="text-blue-400">TIKTOK DOWNLOADER</span>
         </h1>
-        <p class="text-slate-400 text-center mb-10 text-sm md:text-base font-medium">
-            Mendukung TikTok No Watermark, Instagram, YouTube, dan 50+ Platform lainnya.
+        <p class="text-slate-400 text-center mb-10 text-sm md:text-lg font-medium max-w-2xl">
+            TikTok No Watermark Downloader. Cepat, Gratis, dan Kualitas HD.
         </p>
         
-        <div class="w-full max-w-2xl flex flex-col items-center gap-4">
+        <div class="w-full max-w-3xl flex flex-col md:flex-row items-center gap-4 mb-20">
             <div class="relative w-full">
                 <input type="text" id="urlInput" placeholder="Tempel link video TikTok di sini..." 
-                       class="w-full glow-input border border-blue-500/20 p-5 rounded-2xl outline-none text-sm font-medium transition focus:border-blue-500/60">
+                       class="w-full glow-input border border-blue-500/20 p-5 rounded-2xl outline-none text-sm md:text-base font-medium transition focus:border-blue-500/60">
                 <i data-lucide="link" class="absolute right-6 top-5 text-slate-500 w-5 h-5"></i>
             </div>
-
-            <button onclick="processLink()" id="btnAction" class="btn-download w-full md:w-auto px-12 py-4 rounded-2xl font-black text-sm tracking-widest flex items-center justify-center gap-3">
+            <button onclick="processLink()" id="btnAction" class="btn-download w-full md:w-64 py-5 rounded-2xl font-black text-sm tracking-widest flex items-center justify-center gap-3 shrink-0">
                 DOWNLOAD <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </button>
         </div>
 
         <div id="loader" class="hidden mt-12 flex flex-col items-center">
-            <div class="w-10 h-10 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin"></div>
-            <p class="text-xs mt-4 text-blue-400 font-bold uppercase tracking-widest">Searching Video...</p>
+            <div class="w-12 h-12 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin"></div>
+            <p class="text-xs mt-4 text-blue-400 font-bold uppercase tracking-widest">Searching Video Tiktok.....</p>
         </div>
 
-        <div id="resultCard" class="hidden mt-12 w-full max-w-lg glass p-6 rounded-[2.5rem] animate-result shadow-2xl">
-            <div class="video-container mb-6">
-                <video id="player" controls class="w-full h-full object-cover">
-                    <source src="" type="video/mp4">
-                </video>
-            </div>
-            
-            <div class="space-y-3">
-                <button id="directDownload" class="w-full bg-green-500 hover:bg-green-600 text-white py-4 rounded-2xl font-black text-sm transition flex items-center justify-center gap-2">
-                    <i data-lucide="download" class="w-5 h-5"></i> SIMPAN KE GALERI
-                </button>
-                <button onclick="location.reload()" class="w-full text-slate-500 text-[11px] font-bold uppercase tracking-widest hover:text-white transition">
-                    Batal & Reset
-                </button>
+        <div id="resultCard" class="hidden mt-4 w-full max-w-4xl glass p-6 md:p-10 rounded-[2.5rem] animate-result shadow-2xl mb-24">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-full md:w-1/2">
+                    <div class="video-container shadow-2xl">
+                        <video id="player" controls class="w-full h-full object-cover"><source src="" type="video/mp4"></video>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <h3 class="text-2xl font-black mb-2 text-blue-400">Video Ditemukan!</h3>
+                    <p class="text-slate-400 text-sm mb-8">Klik tombol di bawah untuk menyimpan video ke galeri Anda.</p>
+                    <button id="directDownload" class="w-full bg-green-500 hover:bg-green-600 text-white py-5 rounded-2xl font-black text-sm transition flex items-center justify-center gap-3">
+                        <i data-lucide="download" class="w-6 h-6"></i> SAVE TO GALLERY</button>
+                    <button onclick="location.reload()" class="w-full text-slate-500 text-[11px] font-bold uppercase mt-4 hover:text-white transition py-2">Batal & Reset</button>
+                </div>
             </div>
         </div>
 
-        <div id="badges" class="grid grid-cols-5 gap-6 mt-20 opacity-30">
-            <i data-lucide="instagram" class="w-6 h-6"></i>
-            <i data-lucide="music-2" class="w-6 h-6 text-blue-400"></i>
-            <i data-lucide="youtube" class="w-6 h-6"></i>
-            <i data-lucide="facebook" class="w-6 h-6"></i>
-            <i data-lucide="twitter" class="w-6 h-6"></i>
+        <div id="community" class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-4 mb-20">
+            <a href="https://chat.whatsapp.com/CF2Yfshs3W6IflmaF1PqlP?mode=gi_t" target="_blank" class="social-card glass p-6 rounded-3xl flex flex-col items-center text-center">
+                <div class="bg-green-500/20 p-4 rounded-2xl mb-4"><i data-lucide="users" class="text-green-500"></i></div>
+                <h4 class="font-bold text-sm mb-1">WhatsApp Group</h4>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Diskusi & Update</p>
+            </a>
+            <a href="https://whatsapp.com/channel/0029VanOX8e17En3oZO3cW0M" target="_blank" class="social-card glass p-6 rounded-3xl flex flex-col items-center text-center border-blue-500/20">
+                <div class="bg-blue-500/20 p-4 rounded-2xl mb-4"><i data-lucide="bell" class="text-blue-500"></i></div>
+                <h4 class="font-bold text-sm mb-1">WA Channel</h4>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Berita Terbaru</p>
+            </a>
+            <a href="https://tiktok.com/@ryuzen_one" target="_blank" class="social-card glass p-6 rounded-3xl flex flex-col items-center text-center">
+                <div class="bg-pink-500/20 p-4 rounded-2xl mb-4"><i data-lucide="music" class="text-pink-500"></i></div>
+                <h4 class="font-bold text-sm mb-1">TikTok Dev</h4>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">@ryuzen_one</p>
+            </a>
+        </div>
+
+        <div id="contact" class="w-full max-w-2xl glass p-8 rounded-[2rem] text-center mb-20">
+            <h3 class="font-black text-xl mb-2">Ada Kendala?</h3>
+            <p class="text-slate-400 text-sm mb-6">Hubungi Customer Service kami jika API tidak bekerja atau ada saran fitur.</p>
+            <a href="https://wa.me/628811147684?text=Halo%20Dias,%20saya%20butuh%20bantuan%20SocioLoad" target="_blank" 
+               class="inline-flex items-center gap-3 bg-white text-black px-8 py-3 rounded-xl font-black text-xs hover:bg-slate-200 transition">
+                <i data-lucide="message-circle" class="w-4 h-4"></i> HUBUNGI PENGEMBANG (WA)
+            </a>
         </div>
     </main>
+
+    <footer class="mb-10 text-slate-600 text-[10px] font-bold tracking-widest uppercase flex flex-col items-center gap-4">
+        <div class="flex gap-6 opacity-40">
+            <i data-lucide="instagram"></i><i data-lucide="youtube"></i><i data-lucide="facebook"></i>
+        </div>
+        <span>&copy; 2026 RyuZen DL • Made by Ryu</span>
+    </footer>
 
     <script>
         lucide.createIcons();
@@ -127,19 +155,15 @@
             const resultCard = document.getElementById('resultCard');
             const player = document.getElementById('player');
             const dlBtn = document.getElementById('directDownload');
-            const badges = document.getElementById('badges');
 
-            if(!url) return alert("Masukkan link TikTok dulu!");
+            if(!url) return alert("Paste link TikToknya dulu, Ler");
 
-            // UI State
             btn.disabled = true;
             btn.style.opacity = "0.5";
             loader.classList.remove('hidden');
             resultCard.classList.add('hidden');
-            badges.classList.add('hidden');
 
             try {
-                // Fetch data dari API
                 const res = await fetch('https://tiktok-downloader-download-tiktok-videos-without-watermark.p.rapidapi.com/rich_response/index?url=' + encodeURIComponent(url), {
                     method: 'GET',
                     headers: {
@@ -152,21 +176,18 @@
                 const videoUrl = data.data?.[0] || (data.video && data.video[0]);
 
                 if(videoUrl) {
-                    // Set Video Player
                     player.src = videoUrl;
                     player.load();
                     
-                    // Logic Direct Download (Blob)
                     dlBtn.onclick = async () => {
                         const originalText = dlBtn.innerHTML;
-                        dlBtn.innerHTML = `<div class="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div> MENGUNDUH...`;
+                        dlBtn.innerHTML = `<div class="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>`;
                         dlBtn.disabled = true;
 
                         try {
                             const vRes = await fetch(videoUrl);
                             const blob = await vRes.blob();
                             const blobUrl = window.URL.createObjectURL(blob);
-                            
                             const link = document.createElement('a');
                             link.href = blobUrl;
                             link.download = `SocioLoad_${Date.now()}.mp4`;
@@ -174,11 +195,8 @@
                             link.click();
                             document.body.removeChild(link);
                             window.URL.revokeObjectURL(blobUrl);
-                            
-                            dlBtn.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i> BERHASIL!`;
-                            dlBtn.classList.replace('bg-green-500', 'bg-blue-500');
+                            dlBtn.innerHTML = `<i data-lucide="check"></i> BERHASIL!`;
                         } catch (err) {
-                            // Fallback jika Blob gagal
                             window.open(videoUrl, '_blank');
                             dlBtn.innerHTML = originalText;
                         } finally {
@@ -189,11 +207,12 @@
 
                     loader.classList.add('hidden');
                     resultCard.classList.remove('hidden');
+                    resultCard.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    alert("Video tidak ditemukan. Pastikan link publik!");
+                    alert("Gagal ambil video. Link salah!!");
                 }
             } catch (e) {
-                alert("Gagal menghubungi server API.");
+                alert("Koneksi Server bermasalah.");
             } finally {
                 btn.disabled = false;
                 btn.style.opacity = "1";
@@ -203,5 +222,4 @@
         }
     </script>
 </body>
-  </html>
-  
+</html>
